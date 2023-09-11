@@ -13,7 +13,14 @@
     // You're going to re-implement this code using React!
     // 💣 So go ahead and delete this implementation (or comment it out for now)
     // These three lines are similar to React.createElement
-    const elementProps = {className: 'container', children: 'HelloWorld'}
+    const elementProps = {
+      className: 'container',
+      children: [
+        React.createElement('span', null, 'Hello'),
+        ' ',
+        React.createElement('span', null, 'World'),
+      ],
+    }
     const elementType = 'div'
     const reactElement = React.createElement(elementType, elementProps)
 
