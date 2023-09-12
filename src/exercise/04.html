@@ -8,9 +8,9 @@
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
   <script type="text/babel">
     // 🐨 Make a function called `message` which returns the JSX we want to share
-    function Message({children}) {
-      return <div className="message">{children}</div>
-    }
+    // function Message({children}) {
+    //   return <div className="message">{children}</div>
+    // }
 
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
@@ -30,10 +30,41 @@
     // )
 
     // 2. 💯 using a custom component with JSX
+    // const element = (
+    //   <div className="container">
+    //     <Message>Hello World</Message>
+    //     <Message>Goodbye World</Message>
+    //   </div>
+    // )
+
+    // 3. 💯 Runtime validation with PropTypes
+    function Message({subject, greeting}) {
+      return (
+        <div className="message">
+          {greeting}, {subject}
+        </div>
+      )
+    }
+
+    const PropTypes = {
+      string(props, propName, componentName) {
+        if (typeof props[propName] !== 'string') {
+          return new Error(
+            `The ${componentName} component needs the ${propName} prop should be a "string"`,
+          )
+        }
+      },
+    }
+
+    Message.propTypes = {
+      subject: PropTypes.string,
+      greeting: PropTypes.string,
+    }
+
     const element = (
       <div className="container">
-        <Message>Hello World</Message>
-        <Message>Goodbye World</Message>
+        <Message greeting="Hello" />
+        <Message greeting="Goodbye" subject="World" />
       </div>
     )
 
