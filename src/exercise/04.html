@@ -62,11 +62,19 @@
       greeting: PropTypes.string.isRequired,
     }
 
+    // const element = (
+    //   <div className="container">
+    //     <Message greeting="Hello" />
+    //     <Message greeting="Goodbye" subject="World" />
+    //   </div>
+    // )
+
+    // 5. 💯 using React Fragments
     const element = (
-      <div className="container">
-        <Message greeting="Hello" />
+      <>
+        <Message greeting="Hello" subject="World" />
         <Message greeting="Goodbye" subject="World" />
-      </div>
+      </>
     )
 
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
