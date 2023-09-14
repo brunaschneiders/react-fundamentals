@@ -41,9 +41,13 @@ import '../box-styles.css'
 
 // 1. 💯 Create a custom component
 
-function Box({className = '', style, children}) {
+function Box({className = '', style, children, ...otherProps}) {
   return (
-    <div className={`box ${className}`} style={{fontStyle: 'italic', ...style}}>
+    <div
+      className={`box ${className}`}
+      style={{fontStyle: 'italic', ...style}}
+      {...otherProps}
+    >
       {children}
     </div>
   )
