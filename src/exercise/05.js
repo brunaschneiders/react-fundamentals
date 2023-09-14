@@ -43,9 +43,11 @@ import '../box-styles.css'
 // 2. 💯 accept a size prop to encapsulate styling
 
 function Box({className = '', style, children, size, ...otherProps}) {
+  const sizeClassName = size ? `box--${size}` : ''
+
   return (
     <div
-      className={`box box--${size} ${className}`}
+      className={`box ${sizeClassName} ${className}`}
       style={{fontStyle: 'italic', ...style}}
       {...otherProps}
     >
