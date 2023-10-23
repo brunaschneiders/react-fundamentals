@@ -47,37 +47,68 @@ import * as React from 'react'
 
 // 2. 💯 Validate lower-case
 
+// function UsernameForm({onSubmitUsername}) {
+//   const [error, setError] = React.useState(null)
+
+//   const handleChange = e => {
+//     const usernameValue = e.target.value
+//     const isValid = usernameValue === usernameValue.toLowerCase()
+//     setError(isValid ? null : 'Username must be lower case')
+//   }
+
+//   const handleSubmit = e => {
+//     e.preventDefault()
+//     const usernameValue = e.target.elements.usernameInput.value
+//     onSubmitUsername(usernameValue)
+//   }
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <div>
+//         <label htmlFor="usernameInput">Username:</label>
+//         <input type="text" id="usernameInput" onChange={handleChange} />
+//       </div>
+
+//       {!!error && (
+//         <div role="alert" style={{color: 'red'}}>
+//           {error}
+//         </div>
+//       )}
+
+//       <button type="submit" disabled={Boolean(error)}>
+//         Submit
+//       </button>
+//     </form>
+//   )
+// }
+
+// 3. 💯 Control the input value
+
 function UsernameForm({onSubmitUsername}) {
-  const [error, setError] = React.useState(null)
+  const [username, setUsername] = React.useState('')
 
   const handleChange = e => {
-    const usernameValue = e.target.value
-    const isValid = usernameValue === usernameValue.toLowerCase()
-    setError(isValid ? null : 'Username must be lower case')
+    const {value} = e.target
+    setUsername(value.toLowerCase())
   }
 
   const handleSubmit = e => {
     e.preventDefault()
-    const usernameValue = e.target.elements.usernameInput.value
-    onSubmitUsername(usernameValue)
+    onSubmitUsername(username)
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="usernameInput">Username:</label>
-        <input type="text" id="usernameInput" onChange={handleChange} />
+        <input
+          type="text"
+          id="usernameInput"
+          value={username}
+          onChange={handleChange}
+        />
       </div>
-
-      {!!error && (
-        <div role="alert" style={{color: 'red'}}>
-          {error}
-        </div>
-      )}
-
-      <button type="submit" disabled={Boolean(error)}>
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
   )
 }
